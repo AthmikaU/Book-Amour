@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Amour - The Online Bookstore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+        }
+        h2,h1{
+            font-weight: bolder;
+        }
+        .navbar-nav .nav-link {
+            color: #fff !important;
+        }
+        .carousel-item img {
+            width: 100%; 
+            height: auto; 
+            max-height: 400px; 
+            object-fit: cover; 
+        }
+        .book-card {
+            margin-bottom: 20px;
+            display: flex;
+        }
+
+        .book-card .card {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .book-card .card-img-top {
+            object-fit: cover;
+            height: 270px; 
+            width: 100%;
+        }
+
+        .book-card .card-body {
+            flex-grow: 1;
+        }
+
+        #bookContainer {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        @media (min-width: 576px) {
+            #bookContainer {
+                margin-right: -15px;
+                margin-left: -15px;
+            }
+            .book-card {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+        }
+
+        #bookContainer img{
+            align-self: center;
+            height: 270px;
+            width: auto;
+        }
+        .card-title{
+            font-weight: bold;
+            color: deeppink;
+        }
+        #backButton{
+            width:250px;
+        }
+        .carousel-item {
+            text-align: center;
+        }
+        #review .carousel{
+            width: 800px;
+        }
+        #review .carousel-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: #6c757d; /* Muted color */
+        }
+
+        .stars {
+            color: #ffc107; /* Yellow color for stars */
+        }
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar + Search bar + Modal + Sign-in Form -->
+    <header class="bg-light">
+        <div class="container">
+            <div class="row align-items-center py-3">
+                <div class="col-md-3 col-sm-4 col-6">
+                    <div class="logo d-flex align-items-center">
+                        <img src="imgs/logo.png" class="me-2" alt="Logo">
+                        <span id="back">Book Amour</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-8 col-12">
+                    <form class="search-bar d-flex" onsubmit="event.preventDefault(); filterBooks();">
+                        <input type="text" class="form-control border border-danger" id="searchInput" placeholder="Search here..." required>
+                        <button class="btn btn-outline-danger ms-2" type="submit">
+                            <img src="imgs/search.png" alt="Search" height="20pt">
+                        </button>
+                    </form>
+                </div>
+                <div class="col-md-3 col-6 text-end">
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <img src="imgs/user.png" alt="User" height="30pt">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="#offer">Offers</a>
+                        </li>
+                        <li class="nav-item dropdown"> 
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#horror">Horror</a></li>
+                                <li><a class="dropdown-item" href="#anime">Anime / Manga</a></li>
+                                <li><a class="dropdown-item" href="#science">Science Fiction</a></li>
+                                <li><a class="dropdown-item" href="#fiction">Fiction</a></li>
+                                <li><a class="dropdown-item" href="#mystery">Mystery</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#review">Reviews</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#feedback">Feedback</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>        
+    </header>
+
+    <!-- Login Form -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Sign In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Username</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                              <label class="form-check-label" for="invalidCheck">
+                                Remember me
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <button class="btn btn-primary mt-3" type="submit" data-bs-dismiss="modal" aria-label="Close">Submit form</button>
+                          </div>
+                        <div class="mt-3 text-danger">
+                            <p>Forgot password? <a href="#"> Click here</a></p>
+                            <p>Don't have an account? <a href="#">Create one</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carousel -->
+    <div class="container" id="mainCarousel" id="offer">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- First half content goes here -->
+                <div class="container mt-4">
+                    <div class="alert alert-danger text-center" role="alert">
+                        <h1 class="alert-heading">60% Off</h1>
+                        <p>For engineering students, textbooks are available for rent!</p>
+                        <p>Are you a student? Then enjoy 60% off on textbooks**</p>
+                        <footer class="mt-3">
+                            <small class="text-muted">**Terms & Conditions Apply: You must have a Student ID card.</small>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-2">
+                <!-- Image carousel -->
+                <div class="container mt-4 mb-3">
+                <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="imgs/t0.png" class="d-block w-100 img-fluid" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/t2.png" class="d-block w-100 img-fluid" alt="Image 3">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/t3.png" class="d-block w-100 img-fluid" alt="Image 4">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/t4.png" class="d-block w-100 img-fluid" alt="Image 5">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/t5.png" class="d-block w-100 img-fluid" alt="Image 6">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/t6.png" class="d-block w-100 img-fluid" alt="Image 7">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/t7.png" class="d-block w-100 img-fluid" alt="Image 8">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/t8.png" class="d-block w-100 img-fluid" alt="Image 9">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev carousel-white" href="#imageCarousel" role="button" data-bs-slide="prev" data-bs-interval="10">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only" hidden>Previous</span>
+                    </a>
+                    <a class="carousel-control-next carousel-white" href="#imageCarousel" role="button" data-bs-slide="next" data-bs-interval="10">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only" hidden>Next</span>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Book Cards -->
+    <div class="container mt-5 justify-content-center">
+
+        <h2 class="bg-light text-danger p-3" id="horror">HORROR BOOKS</h2>
+        <div class="row justify-content-center" id="bookContainer"> 
+            <div class="col-sm-3 book-card " data-title="Calling Sinners Bleed" data-author="S.A.Cosby" data-category="horror">
+                <div class="card">
+                    <img src="imgs/Callsinnersbleed.png" class="card-img-top" alt="Calling Sinners Bleed">
+                    <div class="card-body">
+                        <h5 class="card-title">Calling Sinners Bleed</h5>
+                        <p class="card-text">Author: S.A.Cosby</p>
+                        <p class="card-text">₹350</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Calling Sinners Bleed', 'S.A.Cosby', 350, 'imgs/Callsinnersbleed.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="The Ritual" data-author="Adam Nevill" data-category="horror">
+                <div class="card">
+                    <img src="imgs/Critual.png" class="card-img-top" alt="Ritual">
+                    <div class="card-body">
+                        <h5 class="card-title">The Ritual</h5>
+                        <p class="card-text">Author: Adam Nevill</p>
+                        <p class="card-text">₹450</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('The Ritual', 'Adam Nevill', 450, 'imgs/Critual.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Black Forest" data-author="Shane Lee" data-category="horror">
+                <div class="card">
+                    <img src="imgs/Cblackforest.png" class="card-img-top" alt="Black Forest">
+                    <div class="card-body">
+                        <h5 class="card-title">Black Forest</h5>
+                        <p class="card-text">Author: Shane Lee</p>
+                        <p class="card-text">₹400</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Black Forest', 'Shane Lee', 400, 'imgs/Critual.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="bg-light text-danger p-3" id="anime">ANIME / MANGA BOOKS</h2>
+        <div class="row justify-content-center" id="bookContainer"> 
+            <div class="col-sm-3 book-card" data-title="Jujutsu Kaisen" data-author="Gege Akutami" data-category="anime">
+                <div class="card">
+                    <img src="imgs/Mjujutsu.png" class="card-img-top" alt="jujutsu">
+                    <div class="card-body">
+                        <h5 class="card-title">Jujutsu Kaisen</h5>
+                        <p class="card-text">Author: Gege Akutami</p>
+                        <p class="card-text">₹750</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Jujutsu Kaisen', 'Gege Akutami', 750, 'imgs/Mjujutsu.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="One Piece" data-author="" data-category="anime">
+                <div class="card">
+                    <img src="imgs/Monepiece.png" class="card-img-top" alt="One Piece">
+                    <div class="card-body">
+                        <h5 class="card-title">One Piece</h5>
+                        <p class="card-text">Jump Comics</p>
+                        <p class="card-text">₹1000</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('One Piece', 'Jump Comics', 1000, 'imgs/Monepiece.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Blue Lock" data-author="Muneyuki" data-category="anime">
+                <div class="card">
+                    <img src="imgs/Mbluelock.png" class="card-img-top" alt="BL">
+                    <div class="card-body">
+                        <h5 class="card-title">Blue Lock</h5>
+                        <p class="card-text">Author : Muneyuki Kaneshiro</p>
+                        <p class="card-text">₹500</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Black Forest', 'Muneyuki Kaneshiro', 500, 'imgs/Mbluelock.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" id="bookContainer"> 
+            <div class="col-sm-3 book-card" data-title="Death Note" data-author="Ilumina il Nuo" data-category="anime">
+                <div class="card">
+                    <img src="imgs/Mdeathnote.png" class="card-img-top" alt="Death Note">
+                    <div class="card-body">
+                        <h5 class="card-title">Death Note</h5>
+                        <p class="card-text">Author: Ilumina il Nuo</p>
+                        <p class="card-text">₹750</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Death Note', 'Ilumina il Nuo', 750, 'imgs/Mdeathnote.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Demon Slayer" data-author="Koyohoru Gotouge" data-category="anime">
+                <div class="card">
+                    <img src="imgs/Mdemonslayer.png" class="card-img-top" alt="One Piece">
+                    <div class="card-body">
+                        <h5 class="card-title">Demon Slayer</h5>
+                        <p class="card-text">Author : Koyohoru Gotouge</p>
+                        <p class="card-text">₹800</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Demon Slayer', 'Koyohoru Gotouge', 800, 'imgs/Mdemonslayer.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Your Name" data-author="Makoto Shinkai" data-category="anime">
+                <div class="card">
+                    <img src="imgs/Myourname.png" class="card-img-top" alt="Your Name">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Name</h5>
+                        <p class="card-text">Author : Makoto Shinkai</p>
+                        <p class="card-text">₹650</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Your Name', 'Makoto Shinkai', 650, 'imgs/Myourname.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="bg-light text-danger p-3" id="science">SCIENCE FICTION BOOKS</h2>
+        <div class="row justify-content-center" id="bookContainer"> 
+            <div class="col-sm-3 book-card " data-title="Children of Time" data-author="Adrian Tchaikovsky" data-category="science">
+                <div class="card">
+                    <img src="imgs/Schildrenoftime.png" class="card-img-top" alt="Children of Time">
+                    <div class="card-body">
+                        <h5 class="card-title">Children of Time</h5>
+                        <p class="card-text">Author: Adrian Tchaikovsky</p>
+                        <p class="card-text">₹900</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Children of Time', 'Adrian Tchaikovsky', 900, 'imgs/Schildrenoftime.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Electric Kingdom" data-author="David Arnold" data-category="science">
+                <div class="card">
+                    <img src="imgs/Selectrickingdom.png" class="card-img-top" alt="Electric Kingdom">
+                    <div class="card-body">
+                        <h5 class="card-title">Electric Kingdom</h5>
+                        <p class="card-text">Author: David Arnold</p>
+                        <p class="card-text">₹850</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Electric Kingdom', 'David Arnold', 850, 'imgs/Selectrickingdom.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Dark Spring" data-author="Brandon Q. Morris" data-category="science">
+                <div class="card">
+                    <img src="imgs/Sdarkspring.png" class="card-img-top" alt="Dark Spring">
+                    <div class="card-body">
+                        <h5 class="card-title">Dark Spring</h5>
+                        <p class="card-text">Author: Brandon Q. Morris</p>
+                        <p class="card-text">₹1100</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Dark Spring', 'Brandon Q. Morris', 1100, 'imgs/Sdarkspring.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="bg-light text-danger p-3" id="fiction">FICTION BOOKS</h2>
+        <div class="row justify-content-center" id="bookContainer"> 
+            <div class="col-sm-3 book-card " data-title="My Fault" data-author="Mercedes Ron" data-category="fiction">
+                <div class="card">
+                    <img src="imgs/Amyfault.png" class="card-img-top" alt="My Fault">
+                    <div class="card-body">
+                        <h5 class="card-title">My Fault</h5>
+                        <p class="card-text">Author: Mercedes Ron</p>
+                        <p class="card-text">₹900</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('My Fault', 'Mercedes Ron', 900, 'imgs/Amyfault.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="One Arranged Murder" data-author="Chethan Bhagat" data-category="fiction">
+                <div class="card">
+                    <img src="imgs/Aarrangedmurder.png" class="card-img-top" alt="One Arranged Murder">
+                    <div class="card-body">
+                        <h5 class="card-title">One Arranged Murder</h5>
+                        <p class="card-text">Author: Chethan Bhagat</p>
+                        <p class="card-text">₹750</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('One Arranged Murder', 'Chethan Bhagat', 750, 'imgs/Aarrangedmurder.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Malgudi Days" data-author="R K Narayane" data-category="fiction">
+                <div class="card">
+                    <img src="imgs/Amalgudi.png" class="card-img-top" alt="Malgudi Days">
+                    <div class="card-body">
+                        <h5 class="card-title">Malgudi Days</h5>
+                        <p class="card-text">Author: R K Narayan</p>
+                        <p class="card-text">₹850</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Malgudi Days', 'R K Narayan', 850, 'imgs/Amalgudi.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" id="bookContainer"> 
+            <div class="col-sm-3 book-card " data-title="It Starts With Us" data-author="Colleen Hoover" data-category="fiction">
+                <div class="card">
+                    <img src="imgs/Astartswithus.png" class="card-img-top" alt="It Starts With Us">
+                    <div class="card-body">
+                        <h5 class="card-title">It Starts With Us</h5>
+                        <p class="card-text">Author: Colleen Hoover</p>
+                        <p class="card-text">₹1000</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('It Starts With Us', 'Colleen Hoover', 1000, 'imgs/Astartswithus.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="It Ends With Us" data-author="Colleen Hoover" data-category="fiction">
+                <div class="card">
+                    <img src="imgs/Aendswithus.png" class="card-img-top" alt="It Ends With Us">
+                    <div class="card-body">
+                        <h5 class="card-title">It Ends With Us</h5>
+                        <p class="card-text">Author: Colleen Hoover</p>
+                        <p class="card-text">₹1000</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('It Ends With Us', 'Colleen Hoover', 1000, 'imgs/Aendswithus.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Ikigai" data-author="Héctor García and Francesc Miralles" data-category="fiction">
+                <div class="card">
+                    <img src="imgs/Aikigai.png" class="card-img-top" alt="Ikigai">
+                    <div class="card-body">
+                        <h5 class="card-title">Ikigai</h5>
+                        <p class="card-text">Author: Héctor García and Francesc Miralles</p>
+                        <p class="card-text">₹800</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Ikigai', 'Héctor García and Francesc Miralles', 800, 'imgs/Aikigai.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="bg-light text-danger p-3" id="mystery">MYSTERY BOOKS</h2>
+        <div class="row justify-content-center" id="bookContainer"> 
+            <div class="col-sm-3 book-card " data-title="Enola Holmes" data-author="Nancy Springer" data-category="mystery">
+                <div class="card">
+                    <img src="imgs/Denola.png" class="card-img-top" alt="Enola Holmes">
+                    <div class="card-body">
+                        <h5 class="card-title">Enola Holmes</h5>
+                        <p class="card-text">Author: Nancy Springer</p>
+                        <p class="card-text">₹650</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Enola Holmes : The Case of the Missing Marquess', 'Nancy Springer', 650, 'imgs/Denola.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Book of Mysteries" data-author="Jonathan Cahn" data-category="mystery">
+                <div class="card">
+                    <img src="imgs/Dbookofmysteries.png" class="card-img-top" alt="Book of Mysteries">
+                    <div class="card-body">
+                        <h5 class="card-title">Book of Mysteries</h5>
+                        <p class="card-text">Author: Jonathan Cahn</p>
+                        <p class="card-text">₹450</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Book of Mysteries', 'Jonathan Cahn', 450, 'imgs/Dbookofmysteries.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Eight Perfect Murders" data-author="Peter Swanson" data-category="mystery">
+                <div class="card">
+                    <img src="imgs/D8perfectmurders.png" class="card-img-top" alt="Eight Perfect Murders">
+                    <div class="card-body">
+                        <h5 class="card-title">Eight Perfect Murders</h5>
+                        <p class="card-text">Author: Peter Swanson</p>
+                        <p class="card-text">₹750</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Eight Perfect Murders', 'Peter Swanson', 750, 'imgs/Critual.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" id="bookContainer"> 
+            <div class="col-sm-3 book-card " data-title="Beyond the Black Door" data-author="Lisa Maxwell" data-category="mystery">
+                <div class="card">
+                    <img src="imgs/Dblackdoor.png" class="card-img-top" alt="Beyond the Black Door">
+                    <div class="card-body">
+                        <h5 class="card-title">Beyond the Black Door</h5>
+                        <p class="card-text">Author: Lisa Maxwell</p>
+                        <p class="card-text">₹950</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Beyond the Black Door', 'Lisa Maxwell', 950, 'imgs/Denola.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="If She Knew<" data-author="Blake Pierce" data-category="mystery">
+                <div class="card">
+                    <img src="imgs/Difsheknew.png" class="card-img-top" alt="If She Knew">
+                    <div class="card-body">
+                        <h5 class="card-title">If She Knew</h5>
+                        <p class="card-text">Author: Blake Pierce</p>
+                        <p class="card-text">₹450</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('If She Knew<', 'Blake Pierce', 450, 'imgs/Dbookofmysteries.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="The Silent Patient" data-author="Peter Swanson" data-category="mystery">
+                <div class="card">
+                    <img src="imgs/Dsilentpatient.png" class="card-img-top" alt="The Silent Patient">
+                    <div class="card-body">
+                        <h5 class="card-title">The Silent Patient</h5>
+                        <p class="card-text">Author: Peter Swanson</p>
+                        <p class="card-text">₹750</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('The Silent Patient', 'Peter Swanson', 750, 'imgs/Critual.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Book Details Modal -->
+    <div class="modal fade" id="bookDetailsModal" tabindex="-1" aria-labelledby="bookDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookDetailsModalLabel">Book Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img id="modalBookImage" src="" class="img-fluid mb-3" alt="Book Image">
+                        </div>
+                        <div class="col-md-8">
+                            <h4 id="modalBookTitle"></h4>
+                            <p id="modalBookAuthor"></p>
+                            <p id="modalBookDescription"></p>
+                            <p id="modalBookPrice"></p>
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Back button -->
+    <div class="container mt-5">
+        <br/>
+        <div class="row justify-content-center">
+            <button id="backButton" class="btn btn-outline-success" onclick="showAllBooks()" style="display: none;">Back to All Books</button>
+        </div>
+        <br/>
+    </div>
+    
+     <!-- Trigger Button -->
+     <div class="container-sm justify-content-center" id="feedback">
+        <br/><hr/>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#feedbackFormModal">
+            Give Feedback
+        </button>
+        <br/><hr/>
+    </div>
+
+    <!-- Feedback Form Modal -->
+    <div class="modal fade" id="feedbackFormModal" tabindex="-1" aria-labelledby="feedbackFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackFormModalLabel">Feedback Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="feedbackForm">
+                        <div class="mb-3">
+                            <label for="feedback" class="form-label">Feedback</label>
+                            <textarea class="form-control" id="feedback" rows="5" placeholder="Enter your feedback" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    <div id="feedbackFormAlert" class="alert alert-success mt-3 d-none" role="alert">
+                        Thank you for your feedback!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review -->
+    <div class="container mt-5 w-10" id="review">
+        <h2 class="bg-light text-danger p-3" id="review">REVIEWS</h2>
+        <div id="reviewCarousel" class="carousel slide justify-content-center" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Review 1 -->
+                <div class="carousel-item justify-content-center active">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-4">
+                            <img src="imgs/r1.png" alt="Person 1">
+                            <p class="mt-3">Athmika U</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                            <p class="review-text">"Wahhh!! I love this Website! Amazing service! Delivery on time, and cost-effective books! Thankyou Book Amour Team!!!"</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="carousel-item">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-4">
+                            <img src="imgs/r2.png" alt="Person 2">
+                            <p class="mt-3">Mika</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</p>
+                            <p class="review-text">"Good experience overall. Would use again."</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div class="carousel-item">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-4">
+                            <img src="imgs/r3.png" alt="Person 3">
+                            <p class="mt-3">Bhat Athmika</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+                            <p class="review-text">"Great service! I highly recommend it."</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 4 -->
+                <div class="carousel-item">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-4">
+                            <img src="imgs/user.png" alt="Person 4">
+                            <p class="mt-3">Ghost Reader</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+                            <p class="review-text">"Good experience overall. Would use again."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="text-center bg-danger text-white p-4 gt-3" id="contact">
+        <h2>CONTACT US</h2><br/>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-light">
+                    <p><a href="#">Privacy Policy</a></p>
+                    <p><a href="#">Terms of Service</a></p>
+                </div>
+                <div class="col-md-4 gt-4">
+                    <div class=" d-flex justify-content-center">
+                    <a href="mailto://athmikaubhat@gmail.com">
+                        <button type="button" class="btn btn-primary btn-pulse">	✉ Click to Mail</button></a>
+                        <br><br>
+                    </div>
+                    <div class="text-center">
+                    <br>
+                    <strong>Address: </strong>GHOST Studio,<br><pre>               Adyar, Mangalore,<br>        Karnataka.</pre>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <p>&copy; 2024 Book Amour</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- Javascript -->
+    <script>
+        function showProductDetails(name, author, price, imageSrc) {
+            document.getElementById('modalBookTitle').innerText = name;
+            document.getElementById('modalBookAuthor').innerText = 'Author: ' + author;
+            document.getElementById('modalBookPrice').innerText = 'Price: $' + price;
+            document.getElementById('modalBookImage').src = imageSrc;
+        }
+        function filterBooks() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const bookCards = document.querySelectorAll('.book-card');
+
+            bookCards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const author = card.getAttribute('data-author').toLowerCase();
+                const category = card.getAttribute('data-category').toLowerCase();
+
+                if (title.includes(searchInput) || author.includes(searchInput) || category.includes(searchInput)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show the "Back to All Books" button if filtered results are displayed
+            const backButton = document.getElementById('backButton');
+            backButton.style.display = 'block';
+        }
+        function showAllBooks() {
+            const bookCards = document.querySelectorAll('.book-card');
+
+            bookCards.forEach(card => {
+                card.style.display = 'block';
+            });
+
+            const backButton = document.getElementById('backButton');
+            backButton.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
