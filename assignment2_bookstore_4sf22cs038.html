@@ -73,7 +73,7 @@
             color: deeppink;
         }
         #backButton{
-            width:250px;
+            width:200px;
         }
         .carousel-item {
             text-align: center;
@@ -149,9 +149,9 @@
                                 Categories
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#science">Science Fiction</a></li>
                                 <li><a class="dropdown-item" href="#horror">Horror</a></li>
                                 <li><a class="dropdown-item" href="#anime">Anime / Manga</a></li>
-                                <li><a class="dropdown-item" href="#science">Science Fiction</a></li>
                                 <li><a class="dropdown-item" href="#fiction">Fiction</a></li>
                                 <li><a class="dropdown-item" href="#mystery">Mystery</a></li>
                             </ul>
@@ -214,7 +214,6 @@
     <div class="container" id="mainCarousel" id="offer">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <!-- First half content goes here -->
                 <div class="container mt-4">
                     <div class="alert alert-danger text-center" role="alert">
                         <h1 class="alert-heading">60% Off</h1>
@@ -271,7 +270,47 @@
     </div>
     <!-- Book Cards -->
     <div class="container mt-5 justify-content-center">
-
+        
+        <h2 class="bg-light text-danger p-3" id="science">SCIENCE FICTION BOOKS</h2>
+        <div class="row justify-content-center" id="bookContainer"> 
+            <div class="col-sm-3 book-card " data-title="Children of Time" data-author="Adrian Tchaikovsky" data-category="science">
+                <div class="card">
+                    <img src="imgs/Schildrenoftime.png" class="card-img-top" alt="Children of Time">
+                    <div class="card-body">
+                        <h5 class="card-title">Children of Time</h5>
+                        <p class="card-text">Author: Adrian Tchaikovsky</p>
+                        <p class="card-text">₹900</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Children of Time', 'Adrian Tchaikovsky', 900, 'imgs/Schildrenoftime.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Electric Kingdom" data-author="David Arnold" data-category="science">
+                <div class="card">
+                    <img src="imgs/Selectrickingdom.png" class="card-img-top" alt="Electric Kingdom">
+                    <div class="card-body">
+                        <h5 class="card-title">Electric Kingdom</h5>
+                        <p class="card-text">Author: David Arnold</p>
+                        <p class="card-text">₹850</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Electric Kingdom', 'David Arnold', 850, 'imgs/Selectrickingdom.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 book-card" data-title="Dark Spring" data-author="Brandon Q. Morris" data-category="science">
+                <div class="card">
+                    <img src="imgs/Sdarkspring.png" class="card-img-top" alt="Dark Spring">
+                    <div class="card-body">
+                        <h5 class="card-title">Dark Spring</h5>
+                        <p class="card-text">Author: Brandon Q. Morris</p>
+                        <p class="card-text">₹1100</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Dark Spring', 'Brandon Q. Morris', 1100, 'imgs/Sdarkspring.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <h2 class="bg-light text-danger p-3" id="horror">HORROR BOOKS</h2>
         <div class="row justify-content-center" id="bookContainer"> 
             <div class="col-sm-3 book-card " data-title="Calling Sinners Bleed" data-author="S.A.Cosby" data-category="horror">
@@ -385,46 +424,6 @@
                         <p class="card-text">₹650</p>
                         <a href="#" class="btn btn-primary">Add to Cart</a>
                         <a href="#" class="btn btn-secondary" onclick="showProductDetails('Your Name', 'Makoto Shinkai', 650, 'imgs/Myourname.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="bg-light text-danger p-3" id="science">SCIENCE FICTION BOOKS</h2>
-        <div class="row justify-content-center" id="bookContainer"> 
-            <div class="col-sm-3 book-card " data-title="Children of Time" data-author="Adrian Tchaikovsky" data-category="science">
-                <div class="card">
-                    <img src="imgs/Schildrenoftime.png" class="card-img-top" alt="Children of Time">
-                    <div class="card-body">
-                        <h5 class="card-title">Children of Time</h5>
-                        <p class="card-text">Author: Adrian Tchaikovsky</p>
-                        <p class="card-text">₹900</p>
-                        <a href="#" class="btn btn-primary">Add to Cart</a>
-                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Children of Time', 'Adrian Tchaikovsky', 900, 'imgs/Schildrenoftime.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 book-card" data-title="Electric Kingdom" data-author="David Arnold" data-category="science">
-                <div class="card">
-                    <img src="imgs/Selectrickingdom.png" class="card-img-top" alt="Electric Kingdom">
-                    <div class="card-body">
-                        <h5 class="card-title">Electric Kingdom</h5>
-                        <p class="card-text">Author: David Arnold</p>
-                        <p class="card-text">₹850</p>
-                        <a href="#" class="btn btn-primary">Add to Cart</a>
-                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Electric Kingdom', 'David Arnold', 850, 'imgs/Selectrickingdom.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 book-card" data-title="Dark Spring" data-author="Brandon Q. Morris" data-category="science">
-                <div class="card">
-                    <img src="imgs/Sdarkspring.png" class="card-img-top" alt="Dark Spring">
-                    <div class="card-body">
-                        <h5 class="card-title">Dark Spring</h5>
-                        <p class="card-text">Author: Brandon Q. Morris</p>
-                        <p class="card-text">₹1100</p>
-                        <a href="#" class="btn btn-primary">Add to Cart</a>
-                        <a href="#" class="btn btn-secondary" onclick="showProductDetails('Dark Spring', 'Brandon Q. Morris', 1100, 'imgs/Sdarkspring.png')" data-bs-toggle="modal" data-bs-target="#bookDetailsModal">View Details</a>
                     </div>
                 </div>
             </div>
@@ -730,8 +729,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 text-light">
-                    <p><a href="#">Privacy Policy</a></p>
-                    <p><a href="#">Terms of Service</a></p>
+                    <p><a href="#" class="text-light">Privacy Policy</a></p>
+                    <p><a href="#" class="text-light">Terms of Service</a></p>
                 </div>
                 <div class="col-md-4 gt-4">
                     <div class=" d-flex justify-content-center">
@@ -774,7 +773,6 @@
                 }
             });
 
-            // Show the "Back to All Books" button if filtered results are displayed
             const backButton = document.getElementById('backButton');
             backButton.style.display = 'block';
         }
