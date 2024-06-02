@@ -15,11 +15,20 @@ A modern and user-friendly UI for an online book store. The website showcases a 
 - Filters and Sorting : Filters and sorting options on the Books page are added. Users should be able to filter books by categories (e.g., fiction, non-fiction, genres) and sorts-out results by relevance, price, or publication date.                  
 - Book Details Modal: A book details modal that users can access by clicking on a book card is included. Included a larger image of the book cover, detailed description, author information, reviews, and a "Buy Now" button.                                                                              
 - Modal for Feedback : Implement a modal popup for submission of feedback. The modal should appear when triggered and allow users to submit feedback without leaving the current page.
-- Responsive Desgn : Ensures that the website layout is responsive and mobile-friendly.                                                                                                                             -- Footer : A footer section with links to social media, privacy policy, terms of service, and other relevant pages.
+- Responsive Desgn : Ensures that the website layout is responsive and mobile-friendly.
+- Footer : A footer section with links to social media, privacy policy, terms of service, and other relevant pages.
 
 <hr />
 
-`Credits:` ATHMIKA U ( 4SF22CS038 )
+## Repository Contents:
+[`BookStore-Website`]() repository contains :
+- [assignment2_bookstore_4sf22cs038.html](assignment2_bookstore_4sf22cs038.html/)
+- [imgs](imgs/)
+
+<hr/>
+
+### Credits : ATHMIKA U 
+
 <hr/>
 
 ## Some Screenshots of Output
