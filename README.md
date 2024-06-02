@@ -23,6 +23,7 @@ A modern and user-friendly UI for an online book store. The website showcases a 
 ## Repository Contents:
 [`BookStore-Website`]() repository contains :
 - [assignment2_bookstore_4sf22cs038.html](assignment2_bookstore_4sf22cs038.html/)
+- [style.css](style.css/)
 - [imgs](imgs/)
 
 <hr/>
