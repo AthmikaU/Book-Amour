@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+}
+
+header .logo img {
+    width: 30px;
+    height: 30px;
+}
+
+header .logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header .search-bar .form-control {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+header .search-bar .btn {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+header .icon-link {
+    color: #333;
+    font-size: 1.25rem;
+}
+
+header .navbar {
+    margin-top: 10px;
+}
+
+header .navbar-nav .nav-link {
+    color: #fff !important;
+    font-weight: 500;
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-body .form-check-label {
+    margin-left: 0.5rem;
+}
+
+#user{
+    height: 30pt;
+    border-radius: 50%;
+    padding: 3pt;
+}
+.carousel-inner img {
+    height: 200px; 
+    object-fit:contain; 
+}
+h2,h1{
+    font-weight: bolder;
+}
+.navbar-nav .nav-link {
+    color: #fff !important;
+}
+.carousel-item img {
+    width: 100%; 
+    height: auto; 
+    max-height: 400px; 
+    object-fit: cover; 
+}
+.book-card {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.book-card .card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.book-card .card-img-top {
+    object-fit: cover;
+    height: 270px; 
+    width: 100%;
+}
+
+.book-card .card-body {
+    flex-grow: 1;
+}
+
+#bookContainer {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+@media (min-width: 576px) {
+    #bookContainer {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+    .book-card {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+}
+
+#bookContainer img{
+    align-self: center;
+    height: 270px;
+    width: auto;
+}
+.card-title{
+    font-weight: bold;
+    color: deeppink;
+}
+#backButton{
+    width:200px;
+}
+.carousel-item {
+    text-align: center;
+}
+#review .carousel{
+    width: 800px;
+}
+#review .carousel-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.review-text {
+    font-style: italic;
+    color: #6c757d;
+}
+
+.stars {
+    color: #ffc107; 
+}
+footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    margin-top: 40px;
+}
