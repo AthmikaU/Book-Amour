@@ -8,27 +8,27 @@ A modern and user-friendly UI for an online book store. The website showcases a 
 
 ### Components and Features Included:
 
-- Header: Implemented a navigation bar at the top of the page with links to different sections such as Home, Offers, Categories, Reviews, Feedback and Contact.                            
-- Carousel: Used a carousel/slider to highlight featured books, bestsellers, or special offers. Included navigation controls and indicators for easy browsing.             
-- Book Cards: Displays book cards in a grid layout using Bootstrap's card component. Each card includes an image of the book cover, title, author, price, and a brief description. Buttons on the cards for actions like "Add to Cart" or "View Details" has been added.     
-- Search Bar : A search bar in the navbar for browsing books.                                                            
-- Filters and Sorting : Filters and sorting options on the Books page are added. Users should be able to filter books by categories (e.g., fiction, non-fiction, genres) and sorts-out results by relevance, price, or publication date.                  
-- Book Details Modal: A book details modal that users can access by clicking on a book card is included. Included a larger image of the book cover, detailed description, author information, reviews, and a "Buy Now" button.                                                                              
-- Modal for Feedback : Implement a modal popup for submission of feedback. The modal should appear when triggered and allow users to submit feedback without leaving the current page.
-- Responsive Desgn : Ensures that the website layout is responsive and mobile-friendly.
-- Footer : A footer section with links to social media, privacy policy, terms of service, and other relevant pages.
+- `Header`: Implemented a navigation bar at the top of the page with links to different sections such as Home, Offers, Categories, Reviews, Feedback and Contact.                            
+- `Carousel`: Used a carousel/slider to highlight featured books, bestsellers, or special offers. Included navigation controls and indicators for easy browsing.             
+- `Book Cards`: Displays book cards in a grid layout using Bootstrap's card component. Each card includes an image of the book cover, title, author, price, and a brief description. Buttons on the cards for actions like "Add to Cart" or "View Details" has been added.     
+- `Search Bar`: A search bar in the navbar for browsing books.                                                            
+- `Filters and Sorting`: Filters and sorting options on the Books page are added. Users should be able to filter books by categories (e.g., fiction, non-fiction, genres) and sorts-out results by relevance, price, or publication date.                  
+- `Book Details Modal`: A book details modal that users can access by clicking on a book card is included. Included a larger image of the book cover, detailed description, author information, reviews, and a "Buy Now" button.                                                                              
+- `Modal for Feedback`: Implement a modal popup for submission of feedback. The modal should appear when triggered and allow users to submit feedback without leaving the current page.
+- `Responsive Desgn`: Ensures that the website layout is responsive and mobile-friendly.
+- `Footer`: A footer section with links to social media, privacy policy, terms of service, and other relevant pages.
 
 <hr />
 
 ## Repository Contents:
-[`BookStore-Website`]() repository contains :
+[`Book-Amour`]() repository contains :
 - [BookAmour-TheBookStore.html](BookAmour-TheBookStore.html/)
 - [style.css](style.css/)
 - [imgs](imgs/)
 
 <hr/>
 
-### Credits : ATHMIKA U 
+### `Credits` : ATHMIKA U 
 
 <hr/>
 
