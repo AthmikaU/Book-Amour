@@ -1,4 +1,4 @@
-# BookStore-Website
+# Book Amour - The Online Book Store
  
 An interactive and visually appealing user interface (UI) for a book store website using Bootstrap components.
 <hr/>
@@ -22,7 +22,7 @@ A modern and user-friendly UI for an online book store. The website showcases a 
 
 ## Repository Contents:
 [`BookStore-Website`]() repository contains :
-- [assignment2_bookstore_4sf22cs038.html](assignment2_bookstore_4sf22cs038.html/)
+- [BookAmour-TheBookStore.html](BookAmour-TheBookStore.html/)
 - [style.css](style.css/)
 - [imgs](imgs/)
 
